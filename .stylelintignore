@@ -1,5 +1,5 @@
-**/normalize.css
-**/normalize.min.css
-**/fonts/
-**/images/
-**/img/
+node_modules
+build
+dist
+coverage
+.storybook 

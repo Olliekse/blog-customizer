@@ -18,10 +18,19 @@ type SelectProps = {
 	onChange?: (selected: OptionType) => void;
 	onClose?: () => void;
 	title?: string;
+	closeOnSelect?: boolean;
 };
 
 export const Select = (props: SelectProps) => {
-	const { options, placeholder, selected, onChange, onClose, title } = props;
+	const {
+		options,
+		placeholder,
+		selected,
+		onChange,
+		onClose,
+		title,
+		closeOnSelect = true,
+	} = props;
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
@@ -40,15 +49,19 @@ export const Select = (props: SelectProps) => {
 	});
 
 	const handleOptionClick = (option: OptionType) => {
-		setIsOpen(false);
+		if (closeOnSelect) {
+			setIsOpen(false);
+		}
 		onChange?.(option);
 	};
-	const handlePlaceHolderClick: MouseEventHandler<HTMLDivElement> = () => {
+
+	const handlePlaceHolderClick = (e: React.MouseEvent) => {
+		e.stopPropagation();
 		setIsOpen((isOpen) => !isOpen);
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} onClick={(e) => e.stopPropagation()}>
 			{title && (
 				<>
 					<Text size={12} weight={800} uppercase>
@@ -60,8 +73,10 @@ export const Select = (props: SelectProps) => {
 				className={styles.selectWrapper}
 				ref={rootRef}
 				data-is-active={isOpen}
-				data-testid='selectWrapper'>
-				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} />
+				data-testid="selectWrapper"
+				onClick={(e) => e.stopPropagation()}
+			>
+				<img src={arrowDown} alt="иконка стрелочки" className={styles.arrow} />
 				<div
 					className={clsx(
 						styles.placeholder,
@@ -70,29 +85,33 @@ export const Select = (props: SelectProps) => {
 					data-status={status}
 					data-selected={!!selected?.value}
 					onClick={handlePlaceHolderClick}
-					role='button'
+					role="button"
 					tabIndex={0}
-					ref={placeholderRef}>
+					ref={placeholderRef}
+				>
 					<Text
 						family={
 							isFontFamilyClass(selected?.className)
 								? selected?.className
 								: undefined
-						}>
+						}
+					>
 						{selected?.title || placeholder}
 					</Text>
 				</div>
 				{isOpen && (
-					<ul className={styles.select} data-testid='selectDropdown'>
-						{options
-							.filter((option) => selected?.value !== option.value)
-							.map((option) => (
-								<Option
-									key={option.value}
-									option={option}
-									onClick={() => handleOptionClick(option)}
-								/>
-							))}
+					<ul
+						className={styles.select}
+						data-testid="selectDropdown"
+						onClick={(e) => e.stopPropagation()}
+					>
+						{options.map((option) => (
+							<Option
+								key={option.value}
+								option={option}
+								onClick={() => handleOptionClick(option)}
+							/>
+						))}
 					</ul>
 				)}
 			</div>

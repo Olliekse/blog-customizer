@@ -1,22 +1,38 @@
-# Dependency directories
-node_modules/
-.idea
-.vscode
+# Dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+/dist
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Logs
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
 
-# dotenv environment variables file
-.env
-.env.test
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-build
-dist
-.yarn
+# TypeScript
+*.tsbuildinfo
 
-storybook-static
+# Storybook
+storybook-static/

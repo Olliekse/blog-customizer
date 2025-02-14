@@ -174,6 +174,6 @@ export const defaultArticleState = {
 	backgroundColor: backgroundColors[0],
 	contentWidth: contentWidthArr[0],
 	fontSizeOption: fontSizeOptions[0],
-};
+} as const;
 
 export type ArticleStateType = typeof defaultArticleState;

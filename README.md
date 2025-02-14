@@ -1,54 +1,77 @@
-# Проектная работа: Вёрстка проекта
+<img width="1264" alt="Screenshot 2025-02-13 at 23 32 32" src="https://github.com/user-attachments/assets/a50df59d-837c-4275-ae5b-f54fa840fd01" />
+<img width="1279" alt="Screenshot 2025-02-14 at 13 15 11" src="https://github.com/user-attachments/assets/d730b3c3-805a-45f4-9515-d22a47f52af7" />
 
-## Шаг первый. Изучаем имеющиеся компоненты
 
-[Макет проекта](https://www.figma.com/file/FEeiiGLOsE7ktXbPpBxYoD/Custom-dropdown?type=design&node-id=0%3A1&mode=design&t=eXRJnWC6Xsuw0qR4-1)
+# Blog Customizer
+ 
+https://github.com/Olliekse/blog-customizer
 
-Для запуска Storybook выполните:
+A React-based tool that allows users to customize the appearance of blog articles through an interactive sidebar interface.
 
+## Features
+
+- Interactive sidebar for style customization
+- Real-time preview of style changes
+- Customizable options include:
+  - Font family
+  - Font size
+  - Font color
+  - Background color
+  - Content width
+
+## Getting Started
+
+### Installation
+
+```bash
+npm install
 ```
-npm run storybook
+
+### Available Scripts
+
+- `npm run storybook` - Launch Storybook for component development
+- `npm run stylelint` - Run style linting
+- `npm run lint` - Run code linting
+- `npm run format` - Format code
+
+## Usage
+
+The sidebar opens with an arrow button click and provides various customization options. Changes are applied only after clicking the "Apply" button, allowing users to preview different combinations before committing to them.
+
+---
+
+# Настройщик блога
+
+https://github.com/Olliekse/blog-customizer
+
+Инструмент на основе React, позволяющий пользователям настраивать внешний вид статей блога через интерактивную боковую панель.
+
+## Возможности
+
+- Интерактивная боковая панель для настройки стилей
+- Предварительный просмотр изменений стилей в реальном времени
+- Настраиваемые параметры включают:
+  - Семейство шрифтов
+  - Размер шрифта
+  - Цвет шрифта
+  - Цвет фона
+  - Ширину контента
+
+## Начало работы
+
+### Установка
+
+```bash
+npm install
 ```
 
-Для запуска линтера для стилей выполните:
+### Доступные скрипты
 
-```
-npm run stylelint
-```
+- `npm run storybook` - Запуск Storybook для разработки компонентов
+- `npm run stylelint` - Запуск проверки стилей
+- `npm run lint` - Запуск проверки кода
+- `npm run format` - Форматирование кода
 
-Для запуска линтера выполните:
+## Использование
 
-```
-npm run lint
-```
-
-Для запуска форматтера выполните:
-
-```
-npm run format
-```
-
-### Функциональные требования
-
-- При нажатии на «стрелку» открывается сайдбар с настройками, при повторном нажатии или клике вне сайдбар закрывается.
-- При изменении настроек в сайдбаре они не применяются сразу.
-- После нажатия на «применить» стили применяются к статье.
-- При нажатии «сбросить» настройки в форме сбрасываются на начальные, которые были при открытии страницы, и стили применяются к статье.
-- Настройки устанавливаются через CSS-переменные, которые уже есть в стилях и установлены в коде в дефолтные значения.
-
-## Шаг второй. Реализация формы
-
-Продумайте следующие моменты, прежде чем приступать к коду: 
-
-- как будет организована композиция,
-- где вы будете хранить состояние,
-- как передавать данные между формой и страницей.
-
-Затем реализуйте механику открытия-закрытия панели с формой, после этого можно будет временно зафиксировать ее пропсом для удобства реализации.
-
-После этого реализуйте форму из имеющихся компонент согласно макету.
-
-
-## Шаг третий. Обеспечьте передачу данных между формой и страницей
-
-Реализуйте по отдельности сохранение состояния страницы и состояние формы. Обеспечьте применение нового состояния после нажатия на «применить».
+Боковая панель открывается по клику на кнопку со стрелкой и предоставляет различные параметры настройки. Изменения применяются только после нажатия кнопки "Применить", что позволяет предварительно просмотреть различные комбинации настроек.
