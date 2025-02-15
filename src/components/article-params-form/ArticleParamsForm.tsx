@@ -1,6 +1,6 @@
 import { ArrowButton } from '../../ui/arrow-button';
 import { Button } from '../../ui/button';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { Select } from '../../ui/select/Select';
 import {
@@ -21,39 +21,28 @@ import { useSidebar } from '../../hooks/useSidebar';
 
 interface ArticleParamsFormProps {
 	/** Callback function when styles are changed and applied */
-	onStyleChange?: (settings: ArticleStateType) => void;
-	/** Initial state for the form - defaults to defaultArticleState */
-	initialState?: ArticleStateType;
-	/** Whether the form starts opened or closed */
-	defaultOpen?: boolean;
-	/** Optional callback when sidebar closes */
-	onClose?: () => void;
+	onStyleChange: (settings: ArticleStateType) => void;
 }
 
 /**
  * ArticleParamsForm - A sidebar component for customizing article appearance
  *
  * Features:
- * - Two-state system (temporary and applied states)
+ * - Internal state management for form values
  * - Click outside detection (via useSidebar)
  * - Escape key handling (via useSidebar)
  * - Responsive design
  */
 export const ArticleParamsForm: React.FC<ArticleParamsFormProps> = ({
 	onStyleChange,
-	initialState = defaultArticleState,
-	defaultOpen = false,
-	onClose,
 }): JSX.Element => {
 	// Use our custom sidebar hook
 	const { isOpen, buttonRef, contentRef, handleToggle } = useSidebar({
-		defaultOpen,
-		onClose,
+		defaultOpen: false,
 	});
 
 	// State management
-	const [formState, setFormState] = useState<ArticleStateType>(initialState);
-	const [appliedState, setAppliedState] = useState<ArticleStateType>(initialState);
+	const [formState, setFormState] = useState<ArticleStateType>(defaultArticleState);
 
 	// Update handlers
 	const updateFormState = (newState: Partial<ArticleStateType>): void => {
@@ -85,35 +74,14 @@ export const ArticleParamsForm: React.FC<ArticleParamsFormProps> = ({
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
 		e.preventDefault();
-		setAppliedState(formState);
-		onStyleChange?.(formState);
+		onStyleChange(formState);
 	};
 
 	const handleReset = (): void => {
 		const newState = defaultArticleState;
 		setFormState(newState);
-		setAppliedState(newState);
-		onStyleChange?.(newState);
+		onStyleChange(newState);
 	};
-
-	// Apply styles effect
-	useEffect((): void => {
-		const mainElement = document.querySelector('main');
-		if (!mainElement) return;
-
-		const styles = {
-			'--font-family': appliedState.fontFamilyOption.value,
-			'--font-size': appliedState.fontSizeOption.value,
-			'--font-color': appliedState.fontColor.value,
-			'--container-width': appliedState.contentWidth.value,
-			'--bg-color': appliedState.backgroundColor.value,
-			backgroundColor: appliedState.backgroundColor.value,
-		} as const;
-
-		Object.entries(styles).forEach(([property, value]): void => {
-			mainElement.style.setProperty(property, value);
-		});
-	}, [appliedState]);
 
 	// Helper functions
 	const getDefaultPlaceholder = (
