@@ -3,7 +3,8 @@
 	left: 0;
 	width: 616px;
 	height: 100%;
-	overflow: scroll;
+	overflow-y: auto;
+	overflow-x: hidden;
 	transform: translate(-616px);
 	transition: transform 0.5s ease;
 }
@@ -23,6 +24,15 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
+	// Added this gap to match the layout
+	gap: 50px;
+}
+
+.title {
+	margin: 0;
+	font-size: 31px;
+	font-weight: 800;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .bottomContainer {

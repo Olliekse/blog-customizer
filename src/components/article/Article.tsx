@@ -6,19 +6,24 @@ import { Text } from 'src/ui/text';
 
 import styles from './Article.module.scss';
 
-export const Article = () => {
+interface ArticleProps {
+	/** Added optional callback to close the sidebar */
+	onSidebarClose?: () => void;
+}
+
+export const Article = ({ onSidebarClose }: ArticleProps) => {
 	return (
-		<article className={clsx(styles.article)}>
-			<Text as='h1' size={45} weight={800} uppercase dynamicLite>
+		<article className={clsx(styles.article)} onClick={onSidebarClose}>
+			<Text as="h1" size={45} weight={800} uppercase dynamicLite>
 				Портрет Западной Швейцарии
 			</Text>
 			<div className={styles.titleDescription}>
-				<Text size={22} weight={800} uppercase align='center' dynamicLite>
+				<Text size={22} weight={800} uppercase align="center" dynamicLite>
 					Примитивист Фиштр расписывает новый бюджетный авиалайнер
 				</Text>
 			</div>
-			<img className={styles.image} src={plane} alt='Картинка самолета' />
-			<Text dynamic size={18} fontStyle='italic'>
+			<img className={styles.image} src={plane} alt="Картинка самолета" />
+			<Text dynamic size={18} fontStyle="italic">
 				Фото: Hans-Peter Gauster , &quot;Bombardier CSeries CS300 HB-JCA&quot; ©
 				2017 CC BY-SA 2.0
 			</Text>
@@ -32,7 +37,7 @@ export const Article = () => {
 			<Text dynamic size={18}>
 				Выбор пал на примитивиста Матиаса Форбаша, работающего под псевдонимом
 				Фиштр. Ему поставили задачу изобразить всё лучшее во франкоговорящей
-				части Швейцарии — горы, озёра, вина, сыры, доброжелательность и свободу.
+				части Швейцарии — горы, озёра, вина, сыры, доброжелательность и свобода.
 				Заказ был выполнен в рекордный срок, всего за 5 месяцев. Самолёт
 				получился похожим на самого художника: такой же добродушный и с улыбкой
 				до ушей.

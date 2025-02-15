@@ -1,8 +1,7 @@
 node_modules
-public
-.eslintrc.js
-storybook-static
 build
 dist
-webpack/*.js
-package*.json
+coverage
+.storybook
+webpack
+*.d.ts 

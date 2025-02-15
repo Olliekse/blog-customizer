@@ -22,7 +22,8 @@ export const Option = (props: OptionProps) => {
 
 	const handleClick =
 		(clickedValue: OptionType['value']): MouseEventHandler<HTMLLIElement> =>
-		() => {
+		(e) => {
+			e.stopPropagation();
 			onClick(clickedValue);
 		};
 
@@ -39,7 +40,8 @@ export const Option = (props: OptionProps) => {
 			onClick={handleClick(value)}
 			tabIndex={0}
 			data-testid={`select-option-${value}`}
-			ref={optionRef}>
+			ref={optionRef}
+		>
 			<Text family={isFontFamilyClass(className) ? className : undefined}>
 				{title}
 			</Text>
